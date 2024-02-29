@@ -1,0 +1,681 @@
+:root {
+    --gray: #8d959b;
+    --light: #f9f9f9;
+    --dark: #404060;
+    --red: #e96575;
+    --blue: #4b96f0;
+    --background-gradient-start: #6a11cb;
+    --background-gradient-end: #205bbd;
+}
+
+body, html {
+    height: 100%;
+    background: linear-gradient(to right, var(--background-gradient-start), var(--background-gradient-end));
+    font: 15px 'Nunito', sans-serif;
+    color: var(--light);
+    /*min-height: 600px;*/
+}
+
+/*sticky header position*/
+.sticky.is-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+nav {
+    background: #eaebec;
+    min-height: 25px;
+    max-height: 120px;
+}
+/*main {
+    margin-top: 20px;
+}*/
+
+/* Customize Bootstrap Components */
+.navbar-brand {
+    font-weight: 700;
+}
+
+.btn-primary, .btn-warning, .btn-danger {
+    margin-left: 5px;
+}
+
+/* Adjust the navbar toggler icon */
+.navbar-toggler {
+    border-color: rgba(255,255,255,0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.custom-logout-btn {
+    padding: 0.8em 20px !important;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+    border-radius: 10px;
+    color: #d0cece !important;
+    margin-right: 1em !important;
+}
+
+.login-container {
+    max-width: 400px;
+    color: #535151 !important;
+    margin: 5% auto; /* Centers the form with top margin */
+    padding: 2rem;
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 15px; /* Rounded corners for the container */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+/* Additional styling for the form and elements */
+.form-label {
+    margin-top: 1rem;
+}
+
+.btn-lg {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+}
+
+.today {
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+}
+
+.container {
+    padding-top: 75px;
+}
+
+.ui-datepicker {
+    background: #dfdfdf !important;
+    border: 2px solid #ddd; /* Adjust as needed */
+    z-index: 1000 !important; /* Ensure it's above other elements */
+}
+
+/* Change the month and year header color */
+.ui-datepicker .ui-datepicker-title {
+    color: #000;
+}
+
+/* Change the weekday names color */
+.ui-datepicker th {
+    color: #000;
+}
+
+/* Change the days color */
+.ui-datepicker .ui-state-default {
+    color: #183546; 
+}
+
+/* Change the hover state color for days */
+.ui-datepicker .ui-state-hover {
+    color: #fff;
+    background-color: #666; 
+}
+
+/* Change the active (selected) state color for days */
+.ui-datepicker .ui-state-active {
+    color: #fff;
+    background-color: #333;
+}
+
+#todo-text {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Horizontal offset, vertical offset, blur radius, color */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#todo-text:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Slightly larger shadow on focus for interactive feel */
+}
+
+
+/* Styles for todo items past due */
+.past-due {
+    border:   2px solid red;
+}
+
+/* Styles for todo items due today */
+.due-today {
+    border:   3px solid yellow;
+}
+
+.todo-list {
+    margin: 20px 0;
+}
+
+.due-date-text {
+    /*float: right;  Moves the text to the right side */
+    opacity: 0.6; 
+}
+
+.todo-list li {
+    background: var(--light);
+    color: #333;
+    border-radius: 5px;
+    margin-bottom: 7px;
+    position: relative;
+    word-break: break-word;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+
+.todo-list li:hover {
+    transform: translateY(-2px);
+}
+
+.todo-list li.danger {
+    background: rgb(114, 88, 193);
+}
+
+.todo-list li.danger label {
+    text-decoration: line-through;
+    color: var(--light);
+}
+.todo-list li.danger label .checkbox-mask {
+    border-color: transparent;
+}
+.todo-list li.danger label .checkbox-mask:after {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: 0;
+}
+
+.todo-list li .checkbox {
+    margin: 0;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.todo-list li label {
+    display: block;
+    padding-right: 10px;
+}
+
+.todo-list li label input[type="checkbox"] {
+    visibility: hidden;
+}
+
+.todo-list li label .checkbox-mask {
+    display: block;
+    border: 2px solid #666;
+    width: 12px;
+    height: 12px;
+    border-radius: 2.5px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+
+.todo-list li .close {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: var(--dark);
+    cursor: pointer;
+}
+
+.todo-list li .close .fa {
+    line-height: 16px;
+}
+
+.todo-list li:hover .close {
+    display: block;
+}
+
+
+
+.todo-list li .update {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: var(--dark);
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.todo-list li .update .fa {
+    line-height: 16px;
+}
+
+.todo-list li:hover .update {
+    display: block;
+}
+
+.has-feedback .fa {
+    line-height: 35px;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 10;
+    display: block;
+    color: #666;
+    -webkit-transition: color 0.15s linear;
+    transition: color 0.15s linear;
+}
+.has-feedback .fa:hover {
+    color: #999;
+}
+
+.form-control,
+.form-control:focus,
+.form-control:active {
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+    box-shadow: none;
+    transition: all 0.2s linear;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.add-control .form-control {
+    padding-right: 25px;
+}
+
+.add-control {
+    margin-top: 20px;
+    position: relative;
+}
+
+.add-control .refresh {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--gray);
+    transition: color 0.15s linear;
+}
+
+.add-control .refresh:hover {
+    color: var(--dark);
+}
+
+.form-control,
+.form-control:focus,
+.form-control:active,
+.form-control:active:focus {
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+}
+.form-control {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+.form-control:focus {
+    -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.animated {
+    -webkit-animation-duration: 0.45s;
+    animation-duration: 0.45s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.animated.fast {
+    -webkit-animation-duration: 0.25s;
+    animation-duration: 0.25s;
+}
+
+
+
+.zero{
+
+    top: 8px;
+    right: 0;
+    font-size: 14px;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    margin-right: -10px;
+    cursor: pointer;
+    color: #9da1af;
+    -webkit-transition: color 0.15s linear;
+    transition: color 0.15s linear;
+}
+
+.separator {
+    margin: 15px auto;
+    width: 50%;
+    height: 1px;
+    background: var(--light);
+}
+
+button {
+    font-size: 16px;
+    color: var(--light);
+    background: transparent;
+    padding: 10px 20px;
+    transition: all 0.3s;
+    outline: none;
+    border: 1px solid var(--light);
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+@media (max-width: 768px) {
+    .col-xs-offset-3 {
+        margin-left: 10%;
+    }
+
+    .col-xs-6 {
+        width: 80%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 100%;
+        max-width: 1150px;
+    }
+}
+
+@media (max-width: 680px) {
+    svg {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+
+.pomodoro {
+    text-align: center;
+}
+
+p {
+    margin: 15px 0 10px;
+    font-size: 46px;
+    font-weight: 700;
+    color: #FFF;
+
+}
+
+
+.fa-ban:before {
+    content: "\f05e";
+    color: #8c8c8c;
+    font-size: 29px;
+}
+
+
+.logo {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: -50px;
+}
+
+#update-todo-text {
+    margin-bottom: 15px;
+}
+
+#update-todo-due-date {
+    /*margin-bottom: 15px;*/
+    height: 1px;
+}
+
+
+
+.h4, h4 {
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    margin-top: 40px;
+}
+
+a:focus, a:hover {
+    color: #fbfbfb;
+    text-decoration: none;
+}
+
+.fa-remove:before, .fa-close:before, .fa-times:before {
+    content: "\f00d";
+    color: #000;
+}
+
+
+
+@media (max-width: 768px){
+    .col-xs-offset-3 {
+        margin-left: 10%;
+    }
+}
+
+@media (max-width: 768px){
+    .col-xs-6 {
+        width: 80%;
+    }
+}
+@viewport {
+    width: device-width; 
+    zoom: 1; 
+}
+
+#updateModal  {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    color: #333;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(10,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 10;
+}
+
+#updateModal .form-control {
+    border: 1px solid var(--gray);
+}
+
+#updateModal p{
+    color: #333;
+}
+#updateModal .modal-header{
+    padding: 10px;
+    padding-bottom: 2px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    color: #333;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 2px solid #888;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-header h4 {
+    font-size: 18px; /* Adjust the size as needed */
+    font-weight: bolder;
+    color: #333; /* Set the font color */
+    position: relative; /* Needed for the pseudo-element positioning */
+    padding-left: 8px; /* Provide space for the bullet point */
+}
+
+
+/* The Close Button of Update modal */
+.closeUpdateModal {
+    color: #aaa;
+    float: right;
+    transform: translateY(-50%);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeUpdateModal:hover,
+.closeUpdateModal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.input-group button {
+    margin-right: 10px;
+}
+
+.selected-date {
+    margin-left: 10px;
+}
+
+/* Custom checkbox styles */
+
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+}
+
+.checkbox-label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    top: 2px;
+}
+
+.checkbox-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 50%; /* Makes it circular */
+}
+
+/* Transform the ::after pseudo-element into a checkmark when checked */
+.checkbox-label::after {
+    content: none;
+}
+
+/* When the checkbox is checked, style the ::before pseudo-element */
+#update-todo-status:checked + .checkbox-label::before {
+    background-color: #00BFFF; /* Change to your preferred color */
+    border-color: #00BFFF; /* Same as the background for a seamless look */
+}
+
+/* Create a checkmark icon inside the circle when checked */
+#update-todo-status:checked + .checkbox-label::after {
+    content: '\2713'; /* Unicode character for a checkmark */
+    position: absolute;
+    top: 1px; /* Adjust these values as needed to center the checkmark */
+    left: 5px;
+    font-size: 18px; /* Adjust based on the size of your checkbox */
+    color: #fff; /* Checkmark color */
+}
+
+#update-todo-status:checked + .checkbox-label {
+    text-decoration: line-through; /* Optional: if you want the label to be strikethrough when checked */
+}
+
+
+#due-date-picker-btn {
+    background-color: transparent; /* Make the button clear */
+    color: #333; /* Set the icon/text color */
+    border: 1px solid #ccc; /* Optional: define a border */
+}
+
+#open-calendar {
+    padding: 4px 12px;
+}
+
+
+#myUpdateBtn {
+    padding-left: 20px; /* for improving UX to be easily clickable button */
+}
+
+.toast-message {
+    visibility: hidden; /* Hidden by default */
+    min-width: 250px; /* Set a minimum width */
+    margin-left: -125px; /* Divide container width by 2 */
+    background-color: #5cb85c; /* Green background */
+    color: white; /* White text color */
+    color: #333;
+    padding-left: 10px;
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    right: 20px; /* 20px from the right */
+    top: 30px; /* 30px from the top */
+}
+
+.toast-show {
+    visibility: visible; /* Show the toast */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;} 
+    to {top: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {top: 30px; opacity: 1;} 
+    to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+/* Custom CSS to ensure the collapsed navbar has a visible background on mobile */
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background-color: #f8f9fa; /* Light background color, adjust as needed */
+    border-color: #e7e7e7; /* Optional: if you want a border around the collapsed menu */
+}
+
+/* Ensure text is visible against the background color */
+.navbar-default .navbar-nav > li > a {
+    color: #333; /* Dark text color, adjust as needed */
+}
+
+/* Hover and focus states for links */
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    background-color: #e7e7e7; /* Slightly darker background on hover/focus */
+    color: #555; /* Darker text color for contrast */
+}

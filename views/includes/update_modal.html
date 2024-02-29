@@ -1,0 +1,58 @@
+<div id="updateModal">
+
+    <!-- Modal content -->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="closeUpdateModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title mt-1 text-left" id="updateModalLabel">• Update This todo</h4>
+
+            </div>
+
+            <div class="modal-body">
+                <form id="update-todo-form">
+
+                    <input type="hidden" id="update-item-id">
+
+                    <div class="form-group">
+                        <label for="update-todo-text">Todo</label>
+                        <textarea class="form-control" id="update-todo-text" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <div class="input-group">
+                            <!-- Button to trigger the datepicker -->
+                            <!--<button type="button" id="due-date-picker-btn" class="btn btn-outline-secondary"><i class="fa fa-calendar"></i></button>-->
+                            <button type="button" id="due-date-picker-btn" class="btn btn-outline-secondary" title="Pick a date as the due date"><i class="fa fa-calendar" style="color: #333;"></i></button>
+
+                            <!-- Span to display the selected date -->
+                            <span id="selected-due-date" class="selected-date"></span>
+                            <!-- Hidden input to actually store the date -->
+                            <input class="form-control invisible" id="update-todo-due-date">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!--<label>Status</label>-->
+
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="update-todo-status" hidden/>
+                            <label for="update-todo-status" class="checkbox-label">Done?</label>
+                        </div>
+                    </div>
+
+
+                    <div class="text-right" style='padding-right: 10px;'> <!-- Aligns content to the right for the UX of all CTA Buttons -->
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
