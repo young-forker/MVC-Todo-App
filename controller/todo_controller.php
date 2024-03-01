@@ -100,17 +100,18 @@ function authentification() {
                     echo '{"stat": "success", "message": "You Are Logged in"}';
                 } else {
                     // Respond with an error message for incorrect credentials
-                    echo '{"stat": "error", "message": "Wrong Email or Password!!!"}';
+                    echo '{"stat": "error", "message": "Wrong Email or Password!"}';
                     exit();
                 }
             } else {
                 // Respond with an error message if the username does not exist
-                echo '{"stat": "error", "message": "This username does not Exists!!!"}';
+                // The same message as the above condition to prevent the potential hacker find out if the given username exists in Database or not
+                echo '{"stat": "error", "message": "Wrong Email or Password!"}';
                 exit();
             }
         } else {
             // Respond with an error message if any field is empty
-            echo '{"stat": "error", "message": "Please fill out all the fields!!!"}';
+            echo '{"stat": "error", "message": "Please fill out all the fields!"}';
             exit();
         }
     } else {

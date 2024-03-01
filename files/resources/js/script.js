@@ -82,9 +82,10 @@ function getState() {
 function addItem(text, status, id, noUpdate) {
     var id = id ? id : generateID();
     var c = status === "done" ? "danger" : "";
+
     var item =
             '<li data-id="' +
-            id +
+            id + '" data-status="' + status +
             '" class="animated flipInX ' +
             c +
             '"><div class="checkbox"><span class="update" id="myUpdateBtn"><i class="fa fa-pencil"></i></span><span class="close"><i class="fa fa-times"></i></span><label><span class="checkbox-mask"></span><input type="checkbox" />' +
@@ -109,6 +110,7 @@ function addItem(text, status, id, noUpdate) {
     $(".form-control")
             .val("")
             .attr("placeholder", "✍️ Add item...");
+
     setTimeout(function () {
         $(".todo-list li").removeClass("animated flipInX");
     }, 500);
@@ -146,13 +148,13 @@ function addItem(text, status, id, noUpdate) {
 }
 
 function addItemWithDueDate(text, status, id, dueDate, noUpdate) {
-
     var today = new Date().setHours(0, 0, 0, 0);
-    var due = new Date(dueDate * 1000).setHours(0, 0, 0, 0);
+    var due = dueDate ? new Date(dueDate * 1000).setHours(0, 0, 0, 0) : null;
     var dueClass = '';
     var id = id ? id : generateID();
-    var c = status === "done" ? "danger" : "";
+    var c = status === "1" ? "danger" : ""; // Assuming "1" means done
 
+    // Determine class based on due date comparison
     if (dueDate) {
         if (due < today) {
             dueClass = 'past-due'; // Class for past due items
@@ -161,30 +163,23 @@ function addItemWithDueDate(text, status, id, dueDate, noUpdate) {
         }
     }
 
-    var item = '<li data-id="' + id + '" class="animated flipInX ' + c + ' ' + dueClass + '">' +
+    // Note the addition of `data-status` attribute below
+    var item = '<li data-id="' + id + '" data-status="' + status + '" class="animated flipInX ' + c + ' ' + dueClass + '">' +
             '<div class="checkbox"><span class="update" id="myUpdateBtn"><i class="fa fa-pencil"></i></span><span class="close"><i class="fa fa-times"></i></span><label><span class="checkbox-mask"></span><input type="checkbox" />' +
             text +
             (dueDate ? ' <small class="due-date-text">(Due: ' + new Date(dueDate * 1000).toLocaleDateString() + ')</small>' : '') + // Display the due date if available
             '</label></div></li>';
 
-    var isError = $(".form-control").hasClass("hidden");
-
     if (text === "") {
-        $(".err")
-                .removeClass("hidden")
-                .addClass("animated bounceIn");
+        $(".err").removeClass("hidden").addClass("animated bounceIn");
     } else {
         $(".err").addClass("hidden");
         $(".todo-list").append(item);
     }
 
     $(".refresh").removeClass("hidden");
-
     $(".no-items").addClass("hidden");
-
-    $(".form-control")
-            .val("")
-            .attr("placeholder", "✍️ Add item...");
+    $(".form-control").val("").attr("placeholder", "✍️ Add item...");
     setTimeout(function () {
         $(".todo-list li").removeClass("animated flipInX");
     }, 500);
@@ -216,21 +211,17 @@ function refresh() {
 
 $(".todo-list").on("click", ".update", function () {
 
-
     var itemId = $(this).closest('li').data('id');
     var fullText = $(this).siblings('label').text().trim();
     var status = $(this).closest('li').data('status'); // Assuming 'status' is stored as data attribute
 
-    // Extract todo text and due date from the full text
-    var match = fullText.match(/^(.*?)( \(Due: (\d{2}\/\d{2}\/\d{4})\))?$/);
-//    var match = fullText.match(/^(.*?)(?:\s*\(Due:\s*(\d{2}\/\d{2}\/\d{4})\))?$/);
+    var itemText = fullText;
+    var dueDate = "";
 
-    if (match) {
-        var itemText = match[1];
-        var dueDate = match[3]; // This might be undefined if no due date is present
-        // Your existing logic
-    } else {
-        console.error("No match found for the text:", fullText);
+    var parts = fullText.split(" (Due: ");
+    itemText = parts[0];
+    if (parts[1]) {
+        dueDate = parts.length > 1 ? parts[1].slice(0, -1) : ""; // remove the closing parenthesis
     }
 
     var modal = document.getElementById("updateModal");
@@ -238,7 +229,7 @@ $(".todo-list").on("click", ".update", function () {
     $('#updateModal #update-todo-text').val(itemText);
 
     // Set the due date text and value if present
-    if (dueDate) {
+    if (dueDate && dueDate !== "") {
         $('#updateModal #selected-due-date').text(dueDate);
         $('#updateModal #update-todo-due-date').val(dueDate);
     } else {
@@ -247,7 +238,8 @@ $(".todo-list").on("click", ".update", function () {
     }
 
     // Set the checkbox based on the status
-    $('#updateModal #update-todo-status').prop('checked', status === '1');
+
+    $('#updateModal #update-todo-status').prop('checked', status == '1');
 
     $('#updateModal #update-item-id').val(itemId);
 });
